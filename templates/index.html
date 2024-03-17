@@ -1,57 +1,43 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Gemini</title>
-</head>
-<body>
-        
-    <h1>Chat with Gemini</h1>
-
-    <div id="chat-container">
-        <textarea id="chat-box" rows="10" cols="50" placeholder="Chat responses will appear here..." readonly></textarea>
-        <input type="text" id="user-query" placeholder="Enter your query">
-        <button onclick="sendQuery()">Send</button>
-    </div>
-
-    <script>
-        async function sendQuery() {
-            const query = document.getElementById('user-query').value;
-
-            try {
-                const response = await fetch('/generate-response', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: query })
-                });
-                const result = await response.json();
-
-                if(result.success) {
-                    document.getElementById('chat-box').value += '\nGemini: ' + result.response;
-                } else {
-                    document.getElementById('chat-box').value += '\nError: ' + result.message;
-                }
-            } catch (error) {
-                console.error('Error sending query:', error);
-            }
-        }
-    </script>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Gemini</title>
+    <title>Chat with Cory</title>
     <style>
         body {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            align-items: flex-start;
+            padding-top: 20px;
+            background-color: #f4f4f4; /* Light background to make bubbles stand out */
+        }
+        #about-cory, #chat-container {
+            flex: 1;
+            padding: 20px;
+            max-width: 50%;
+        }
+        #chat-box {
+            flex-grow: 1;
+            margin-bottom: 10px;
+        }
+        #input-area {
+            display: flex;
+            width: 100%;
+        }
+        #user-query, button {
+            margin: 5px;
+            border-radius: 20px; /* Rounded edges for input and buttons */
+        }
+        #user-query {
+            width: 50%;
+        }
+        button {
+            width: 25%;
         }
         #nav-bar {
+            position: absolute;
+            top: 0;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -59,33 +45,56 @@
             background-color: #f0f0f0;
             padding: 10px 0;
         }
-        #chat-container {
-            position: absolute;
-            top: 60px; /* Adjust based on the height of your nav bar */
-            right: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+        h2, h3, p, #chat-box, button {
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+            padding: 10px 20px;
+            margin: 10px 0;
         }
-        #chat-box {
-            margin-bottom: 10px;
+        a {
+            display: inline-block; /* Allows background and padding for links */
+            background-color: white;
+            border-radius: 15px;
+            padding: 5px 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #007bff; /* Bootstrap default link color for consistency */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    
+
     <div id="nav-bar">
-        <a href="projects.html">Projects</a>
-        <a href="SensorLoader.html">SensorLoader</a>
-        <a href="cory.pdf">Resume</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/SensorLoader">SensorLoader</a>
+        <a href="/cory.pdf">Resume</a>
     </div>
 
-    <h1>Chat with Gemini</h1>
+    <div id="about-cory">
+        <h2>Cory DeWitt</h2>
+        <h3>Bio</h3>
+        <p>Hi! I'm glad you're here. I am a computer science student at USC and an incoming Software Engineering Intern at Google. I am obsessed with large language models and natural language processing (as seen by the plethora of gemini chatbots catered to each page). I also hold a keen interest in machine learning, prompt engineering, cyber-physical security and networking. Feel free to message me on LinkedIn or reach me by email about anything AI, tech, or sports analaytics! Fight on!</p>
+        <h3>Experience</h3>
+        <p>Incoming SWE Intern @ Google</p>
+        <p>Undergraduate Researcher</p>
+        <p>2023 REU Engineering Intern</p>
+        
+        <p>University of Southern California, Bachelor’s in Computer Science, Graduating May 2025</p>
+        <p>QuestBridge National Match Recipient</p>
+
+        <p>cjdewitt@usc.edu | <a href="https://github.com/cjdewitt">Github</a> | <a href="https://www.linkedin.com/in/cory-dewitt-a1b84a252/">LinkedIn</a></p>
+    </div>
 
     <div id="chat-container">
+        <p>It's me Gemini! Ask me anything :) </p>
         <textarea id="chat-box" rows="10" cols="50" placeholder="Chat responses will appear here..." readonly></textarea>
-        <input type="text" id="user-query" placeholder="Enter your query">
-        <button onclick="sendQuery()">Send</button>
+        <div id="input-area">
+            <input type="text" id="user-query" placeholder="Enter your query">
+            <button onclick="sendQuery()">Send</button>
+            <button onclick="clearChat()">Clear</button>
+        </div>
     </div>
 
     <script>
@@ -109,6 +118,11 @@
                 console.error('Error sending query:', error);
             }
         }
+
+        function clearChat() {
+            document.getElementById('chat-box').value = '';
+        }
     </script>
+
 </body>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Gemini</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding-top: 20px;
+            background-color: #f4f4f4; /* Light background color */
+        }
+        #summary-container, #chat-container {
+            flex: 1;
+            padding: 20px;
+            max-width: 50%;
+        }
+        #chat-box, #user-query, button, h2, li {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+            padding: 10px;
+            margin: 10px 0;
+        }
+        #input-area {
+            display: flex;
+            width: 100%;
+        }
+        #user-query {
+            width: 50%;
+            margin-right: 5px; /* Ensure some space between input and buttons */
+        }
+        button {
+            width: 25%;
+            margin-left: 5px; /* Space between buttons and input field */
+        }
+        #nav-bar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+        }
+        a {
+            display: inline-block;
+            background-color: white;
+            border-radius: 15px;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #007bff; /* Link color */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="nav-bar">
+    <a href="/projects.html">Projects</a>
+    <a href="/">Home</a>
+    <a href="/cory.pdf">Resume</a>
+</div>
+
+<div id="summary-container">
+    <h2>SensorLoader Summary</h2>
+    "What is semantic reverse engineering?"</li>
+            <li>"How does SensorLoader automate the mapping process?"</li>
+            <li>"What are the main challenges in securing cyber-physical systems?"</li>
+            <li>"What technology is SensorLoader leveraging?"
+</div>
+
+<div id="chat-container">
+    <textarea id="chat-box" placeholder="Chat responses will appear here..." readonly></textarea>
+    <div id="input-area">
+        <input type="text" id="user-query" placeholder="Enter your query">
+        <button onclick="sendQuery()">Send</button>
+        <button onclick="clearChat()">Clear</button>
+    </div>
+</div>
+
+    <script>
+        async function sendQuery() {
+            const query = document.getElementById('user-query').value;
+
+            try {
+                const response = await fetch('/generate-response-with-pdf', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: query })
+                });
+                const result = await response.json();
+
+                if(result.success) {
+                    document.getElementById('chat-box').value += '\\nGemini: ' + result.response;
+                } else {
+                    document.getElementById('chat-box').value += '\\nError: ' + result.message;
+                }
+            } catch (error) {
+                console.error('Error sending query:', error);
+            }
+        }
+
+        function clearChat() {
+            document.getElementById('chat-box').value = '';
+        }
+    </script>
+
+</body>
+</html>
