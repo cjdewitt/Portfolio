@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package geminiproto;
+
+// Message for PDF upload request
+message PdfUploadRequest {
+  string filename = 1; // Original filename of the PDF
+  bytes content = 2;   // Content of the PDF file
+}
+
+// Message for PDF upload response
+message PdfUploadResponse {
+  bool success = 1;         // Indicates if the upload was successful
+  string message = 2;       // Additional message, e.g., error message
+  string parsedText = 3;    // Extracted text from the PDF, if successful
+}
+
+// Message for user query request
+message UserQueryRequest {
+  string query = 1;       // User's query text
+  string context = 2;     // Optional context from the PDF or previous interactions
+}
+
+// Message for response from the Gemini model
+message GeminiResponse {
+  bool success = 1;         // Indicates if the model successfully generated a response
+  string message = 2;       // The generated response text or an error message
+  string promptFeedback = 3; // Optional feedback on the prompt, if provided by the model
+}
