@@ -53,20 +53,45 @@
             color: var(--dark-text);
         }
 
-        #input-area {
-            display: flex;
-            width: 100%;
-        }
+        #chat-container {
+    position: fixed;
+    right: 20px;
+    top: 100px; /* Adjust based on the height of your navbar */
+    width: 30%; /* Adjust the width as needed */
+    max-width: 400px; /* Set a max-width to ensure it doesn't get too wide on larger screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
-        #user-query {
-            width: 50%;
-            margin-right: 5px;
-        }
+#chat-box {
+    width: 90%;
+    height: 600px; /* Adjust the height as needed */
+    margin-bottom: 10px;
+    overflow-y: auto; /* Allows scrolling within the textarea */
+    resize: none; /* Prevents resizing of the textarea */
+}
 
-        button {
-            width: 25%;
-            margin-left: 5px;
-        }
+#input-area {
+    width: 100%;
+    display: flex;
+}
+
+#user-query, button {
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+}
+
+#user-query {
+    flex-grow: 1; /* Makes the input field take up the available space */
+    margin-right: 5px;
+}
+
+button {
+    margin-left: 5px;
+}
+
 
         #nav-bar {
             position: absolute;
