@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,36 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with Cory</title>
     <style>
+        :root {
+            --light-background: #FFFFFF;
+            --dark-background: #000000;
+            --light-text: #000000;
+            --dark-text: #FFFFFF;
+            --bubble-background: #9a9a9a; /* Darker gray for bubbles */
+        }
+
         body {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             padding-top: 20px;
-            background-color: #f4f4f4; /* Light background to make bubbles stand out */
+            background-color: var(--light-background);
+            color: var(--light-text);
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .dark-theme {
+            background-color: var(--dark-background);
+            color: var(--dark-text);
+        }
+
+        .light-theme {
+            background-color: var(--light-background);
+            color: var(--light-text);
+        }
+
         #about-cory, #chat-container {
             flex: 1;
             padding: 20px;
             max-width: 50%;
         }
-        #chat-box {
-            flex-grow: 1;
-            margin-bottom: 10px;
+
+        #chat-box, #user-query, button {
+            margin: 5px;
+            border-radius: 20px;
+            background-color: var(--light-background);
+            color: var(--light-text);
         }
+
+        .dark-theme #chat-box, .dark-theme #user-query, .dark-theme button {
+            background-color: var(--dark-background);
+            color: var(--dark-text);
+        }
+
         #input-area {
             display: flex;
             width: 100%;
         }
-        #user-query, button {
-            margin: 5px;
-            border-radius: 20px; /* Rounded edges for input and buttons */
-        }
+
         #user-query {
             width: 50%;
         }
+
         button {
             width: 25%;
         }
+
         #nav-bar {
             position: absolute;
             top: 0;
@@ -45,38 +75,43 @@
             background-color: #f0f0f0;
             padding: 10px 0;
         }
-        h2, h3, p, #chat-box, button {
-            background-color: white;
-            border-radius: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
-            padding: 10px 20px;
-            margin: 10px 0;
-        }
-        a {
-            display: inline-block; /* Allows background and padding for links */
+
+        a, .color-toggle {
+            display: inline-block;
             background-color: white;
             border-radius: 15px;
             padding: 5px 10px;
-            margin: 0 5px;
             text-decoration: none;
-            color: #007bff; /* Bootstrap default link color for consistency */
+            color: #007bff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .bubble {
+            background-color: var(--bubble-background);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
 
     <div id="nav-bar">
-        <a href="/projects.html">Projects</a>
+        <a href="/projects">Projects</a>
         <a href="/SensorLoader">SensorLoader</a>
+        <a href="/Research-GPT">Research-GPT</a>
         <a href="/cory.pdf">Resume</a>
+        <div class="color-toggle" onclick="toggleTheme()">👁️</div>
     </div>
 
     <div id="about-cory">
         <h2>Cory DeWitt</h2>
-        <h3>Bio</h3>
-        <p>Hi! I'm glad you're here. I am a computer science student at USC and an incoming Software Engineering Intern at Google. I am obsessed with large language models and natural language processing (as seen by the plethora of gemini chatbots catered to each page). I also hold a keen interest in machine learning, prompt engineering, cyber-physical security and networking. Feel free to message me on LinkedIn or reach me by email about anything AI, tech, or sports analaytics! Fight on!</p>
-        <h3>Experience</h3>
+        <div class="bubble">
+            <p>Hi! I'm glad you're here. I am a computer science student at USC and an incoming Software Engineering Intern at Google. I am obsessed with large language models and natural language processing (as seen by the plethora of gemini chatbots catered to each page). I also hold a keen interest in machine learning, prompt engineering, cyber-physical security and networking. Feel free to message me on LinkedIn or reach me by email about anything AI, tech, or sports analaytics! Fight on!</p>
+
+        </div>
         <p>Incoming SWE Intern @ Google</p>
         <p>Undergraduate Researcher</p>
         <p>2023 REU Engineering Intern</p>
@@ -98,6 +133,13 @@
     </div>
 
     <script>
+        let isDarkTheme = true;
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.className = isDarkTheme ? 'dark-theme' : 'light-theme';
+        }
+
         async function sendQuery() {
             const query = document.getElementById('user-query').value;
 

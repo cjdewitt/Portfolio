@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Developments</title>
+    <style>
+        :root {
+            --light-background: #FFFFFF;
+            --dark-background: #000000;
+            --light-text: #000000;
+            --dark-text: #FFFFFF;
+            --bubble-background: #9a9a9a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--light-background);
+            color: var(--light-text);
+        }
+
+        .dark-theme {
+            background-color: var(--dark-background);
+            color: var(--dark-text);
+        }
+
+        .light-theme {
+            background-color: var(--light-background);
+            color: var(--light-text);
+        }
+
+        #nav-bar {
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .color-toggle {
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .section .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bubble {
+            background-color: var(--bubble-background);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: inherit;
+        }
+    </style>
+</head>
+<body class="light-theme">
+
+    <div id="nav-bar">
+        <a href="/">Home</a>
+        <a href="/SensorLoader">SensorLoader</a>
+        <a href="/Research-GPT">Research-GPT</a>
+        <a href="/cory.pdf">Resume</a>
+        <div class="color-toggle" onclick="toggleTheme()">👁️</div>
+    </div>
+
+<div class="section">
+    <h1>Work Experience</h1>
+    <div class="grid">
+        <div class="bubble">
+            <h2>Starting May 2024</h2>
+            <h3>Google Software Engineering Intern</h3>
+            <p>Joining Google's Gemini team in Mountain View, CA</p>
+        </div>
+        <div class="bubble">
+            <h2>December 2022 - May 2024</h2>
+            <h3>Undergraduate Researcher at USC Information Science Institute STEEL Lab</h3>
+            <p>Employed PGFuzz for autonomous drone state transitions in software emulators.</p>
+            <p>Analyzed Ardupilot source code to enhance cyberattack resilience.</p>
+            <p>Monitored drone paths using Angr for concolic testing.</p>
+        </div>
+        <div class="bubble">
+            <h2>REU Intern at NSF and Information Sciences Institute</h2>
+            <p>March 2023 - August 2023</p>
+            <ul>
+                <li>Published research in Sensors S&P ‘23, Istanbul.</li>
+                <li>Developed SensorLoader for cyber-physical attack defenses.</li>
+                <li>Leveraged Ghidra for reverse engineering microcontroller firmware.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Personal Projects</h1>
+    <div class="grid">
+        <div class="bubble">
+            <h2>Under Development</h2>
+            <h3>NBA Sports Betting</h3>
+            <p>Developing a Swift IOS app that will give users relevant and up to date analytics based on NBA betting odds from popular betting apps. The app will leverage multiple technologies and include a custom AI model to aid in the data analytics and predictions.</p>
+        </div>
+        <div class="bubble">
+            <h3>Research-GPT</h3>
+            <p>An academic research assistant leveraging OpenAI's GPT-3.5.</p>
+        </div>
+        <div class="bubble">
+            <h3>Duel Doodle Jump</h3>
+            <p>A multiplayer web application of Doodle Jump using Java and LIBGDX.</p>
+        </div>
+        <div class="bubble">
+            <h3>NBA Data Analysis</h3>
+            <p>A web application for exploring NBA player statistics with a machine learning component.</p>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle('dark-theme');
+        body.classList.toggle('light-theme');
+    }
+</script>
+
+</body>
+</html>

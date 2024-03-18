@@ -98,69 +98,19 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
+   <div id="nav-bar">
+    <a href="/projects">Projects</a>
+    <a href="/SensorLoader">SensorLoader</a>
+    <a href="/">Home</a>
+    <a href="/cory.pdf">Resume</a>
+    <div class="color-toggle" onclick="toggleTheme()">👁️</div>
+</div>
 </head>
 <body>
-
-    <div id="nav-bar">
-        <a href="/projects">Projects</a>
-        <a href="/">Home</a>
-        <a href="/Research-GPT">Research-GPT</a>
-        <a href="/cory.pdf">Resume</a>
-        <div class="color-toggle" onclick="toggleTheme()">👁️</div>
-    </div>
-
-<div id="summary-container">
-    <h2>SensorLoader Summary</h2>
+    <h1>Research GPT</h1>
     <div class="bubble">
-        <p>"What is semantic reverse engineering?"</p>
-        <p>"How does SensorLoader automate the mapping process?"</p>
-        <p>"What are the main challenges in securing cyber-physical systems?"</p>
-        <p>"What technology is SensorLoader leveraging?"</p>
+        <h3>COMING SOON</h3>
     </div>
-</div>
-
-<div id="chat-container">
-    <textarea id="chat-box" placeholder="Chat responses will appear here..." readonly></textarea>
-    <div id="input-area">
-        <input type="text" id="user-query" placeholder="Enter your query">
-        <button onclick="sendQuery()">Send</button>
-        <button onclick="clearChat()">Clear</button>
-    </div>
-</div>
-
-<script>
-    let isDarkTheme = true;
-
-    function toggleTheme() {
-            isDarkTheme = !isDarkTheme;
-            document.body.className = isDarkTheme ? 'dark-theme' : 'light-theme';
-        }
-
-    async function sendQuery() {
-            const query = document.getElementById('user-query').value;
-
-            try {
-                const response = await fetch('/generate-response-with-pdf', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: query })
-                });
-                const result = await response.json();
-
-                if(result.success) {
-                    document.getElementById('chat-box').value += '\\nGemini: ' + result.response;
-                } else {
-                    document.getElementById('chat-box').value += '\\nError: ' + result.message;
-                }
-            } catch (error) {
-                console.error('Error sending query:', error);
-            }
-        }
-
-        function clearChat() {
-            document.getElementById('chat-box').value = '';
-        }
-</script>
-
+    
 </body>
 </html>

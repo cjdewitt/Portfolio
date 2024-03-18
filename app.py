@@ -19,6 +19,14 @@ def index():
 def sensor_loader():
     return render_template('SensorLoader.html')
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+
+@app.route('/Research-GPT')
+def research_gpt():
+    return render_template('ResearchGPT.html')
 
 # Route for generating chat responses
 @app.route('/generate-response', methods=['POST'])
